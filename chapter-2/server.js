@@ -6,6 +6,10 @@
 const express = require('express')
 const app = express()
 const PORT = 8383
+let data = {
+    name: 'Medha',
+    age: 22
+}
 
 //HTTP verbs & routes
 //HTTP verbs are methods that are used to interact with the server
@@ -24,6 +28,10 @@ app.get('/dashboard', (req, res) => {
 
 //(Type-02) API endpoints (non visual)-> sending back JSON and they typically come when a user makes a request from a client side application
 
-
+//CRUD-method: Create-POST, Read-GET, Update-Put, Delete-DELETE
+app.get('/api/data', (req, res) => {
+    console.log('this is for data')
+    res.send(data)
+})
 
 app.listen(PORT, () => console.log(`Server has started on: ${PORT}`))
