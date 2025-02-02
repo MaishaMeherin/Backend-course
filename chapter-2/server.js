@@ -6,9 +6,7 @@
 const express = require('express')
 const app = express()
 const PORT = 8383
-let data = {
-    name: 'Medha'
-}
+let data = ['james']
 
 //Middleware: a function that has access to the request and response object
 app.use(express.json()) //this middleware is used to parse the incoming request with JSON payloads
@@ -25,14 +23,10 @@ app.get('/', (req, res) => {
         color: blue;">
         <h1>Data</h1>
             <p>${JSON.stringify(data)}</p>
+            <a href="/dashboard">Dashboard</a>
         </body>
     `)
 })
-
-app.get('/dashboard', (req, res) => {
-    res.send('<h1>dashboard/h1>')
-})
-
 
 //(Type-02) API endpoints (non visual)-> sending back JSON and they typically come when a user makes a request from a client side application
 
@@ -47,7 +41,14 @@ app.post('/api/data', (req, res) => {
     //the user clicks a signup button after entering their details, and the details are sent as network request to the server to handle the action
     const newEntry = req.body
     console.log(newEntry)
+    data.push(newEntry.name) //this is a simple way to add a new user to the data object
     res.sendStatus(201)
 })    
+
+app.delete('/api/data', (req,res) =>{
+    data.pop()
+    console.log('we deleted the element off the end of the array')
+    res.sendStatus(203)
+})
 
 app.listen(PORT, () => console.log(`Server has started on: ${PORT}`))

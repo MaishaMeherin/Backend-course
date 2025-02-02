@@ -14,3 +14,6 @@ Content-Type: application/json
 {
     "name": "Medha"
 }
+
+###DATA ENDPOINT FOR DELETING A USER
+DELETE http://localhost:8383/api/data
