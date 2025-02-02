@@ -7,9 +7,11 @@ const express = require('express')
 const app = express()
 const PORT = 8383
 let data = {
-    name: 'Medha',
-    age: 22
+    name: 'Medha'
 }
+
+//Middleware: a function that has access to the request and response object
+app.use(express.json()) //this middleware is used to parse the incoming request with JSON payloads
 
 //HTTP verbs & routes
 //HTTP verbs are methods that are used to interact with the server
@@ -18,7 +20,13 @@ let data = {
 
 //(Type-01) Website endpoints-> sending back HTML and they typically come when a user enters a URL in the browser
 app.get('/', (req, res) => {
-    res.send('<h1>homepage/h1>')
+    res.send(`
+        <body style="background: pink;
+        color: blue;">
+        <h1>Data</h1>
+            <p>${JSON.stringify(data)}</p>
+        </body>
+    `)
 })
 
 app.get('/dashboard', (req, res) => {
@@ -33,5 +41,13 @@ app.get('/api/data', (req, res) => {
     console.log('this is for data')
     res.send(data)
 })
+
+app.post('/api/data', (req, res) => {
+    //someone wants to create a user (for example when they hit a sign up button)
+    //the user clicks a signup button after entering their details, and the details are sent as network request to the server to handle the action
+    const newEntry = req.body
+    console.log(newEntry)
+    res.sendStatus(201)
+})    
 
 app.listen(PORT, () => console.log(`Server has started on: ${PORT}`))
