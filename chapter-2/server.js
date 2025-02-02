@@ -18,6 +18,7 @@ app.use(express.json()) //this middleware is used to parse the incoming request 
 
 //(Type-01) Website endpoints-> sending back HTML and they typically come when a user enters a URL in the browser
 app.get('/', (req, res) => {
+    console.log("User requested the home page")
     res.send(`
         <body style="background: pink;
         color: blue;">
@@ -25,8 +26,20 @@ app.get('/', (req, res) => {
             <p>${JSON.stringify(data)}</p>
             <a href="/dashboard">Dashboard</a>
         </body>
+        <script>console.log('This is a script')</script>
     `)
 })
+
+app.get('/dashboard', (req, res) => {
+    res.send(`
+    <body style="background: pink;
+    color: blue;">
+        <h1>Dashboard</h1>
+        <a href="/">Home</a>
+    </body>
+`)
+})
+
 
 //(Type-02) API endpoints (non visual)-> sending back JSON and they typically come when a user makes a request from a client side application
 
