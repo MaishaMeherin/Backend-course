@@ -1,9 +1,10 @@
 import express from 'express'
 import path, { dirname}  from 'path'
 import { fileURLToPath } from 'url'
+import authRoutes from './routes/authRoutes.js'
 
 const app = express()
-const PORT = process.env.PORT || 5003 //checks if there is a port in the environment variable else uses 5000
+const PORT = process.env.PORT || 5004//checks if there is a port in the environment variable else uses 5000
 
 //get the file path from the URL of the current module
 const __filename = fileURLToPath(import.meta.url)
@@ -20,6 +21,11 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
+
+//Routes
+//it combines all the routes in the authRoutes file with the /auth prefix
+app.use('/auth', authRoutes)
+
 console.log("Hello world!")
 app.listen(PORT, () => {
     console.log(`Server has started on port ${PORT}`)
