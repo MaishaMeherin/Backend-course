@@ -6,6 +6,7 @@ const app = express()
 const PORT = 8383
 
 
+
 //backend is hardware running software that is connected to the internet, listens to incoming requests to its IP Address specifically at that port
 //app.listen() is a method that listens to incoming requests on the specified port and runs a callback function
 app.listen(PORT, () => console.log(`Server has started on: ${PORT}`))
