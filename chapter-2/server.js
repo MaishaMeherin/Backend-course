@@ -46,7 +46,7 @@ app.get('/dashboard', (req, res) => {
 //CRUD-method: Create-POST, Read-GET, Update-Put, Delete-DELETE
 app.get('/api/data', (req, res) => {
     console.log('this is for data')
-    res.send(data)
+    res.status(599).send(data)
 })
 
 app.post('/api/data', (req, res) => {
